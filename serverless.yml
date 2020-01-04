@@ -1,0 +1,15 @@
+service: hasura-auth
+
+provider:
+  name: kubeless
+  runtime: nodejs8
+
+plugins:
+  - serverless-kubeless
+
+functions:
+  hasura-auth:
+    handler: index.auth
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
